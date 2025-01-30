@@ -238,9 +238,9 @@ export const Timer: React.FC = () => {
               <Progress 
                 value={progress} 
                 className={cn(
-                  "h-2 sm:h-3 rounded-full bg-gray-100 overflow-hidden",
+                  "h-2 sm:h-3 rounded-ful overflow-hidden",
                   "transition-all duration-300",
-                  progress > 0 ? currentTheme.glowColor : ''
+                  progress > 0 ? currentTheme.progressColor : ''
                 )}
               />
               {progress >= 100 && (

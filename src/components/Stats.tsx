@@ -1,33 +1,10 @@
+import StatsCard from '@/components/StatsCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { useAppSelector } from '@/hook';
 import { BarChart2, Target, Clock, Flame, Calendar, TrendingUp, Award, Sparkles } from 'lucide-react';
 
-const StatsCard = ({ icon: Icon, label, value, subtext, gradient = '' }: {
-  icon: React.FC<any>;
-  label: string;
-  value: string | number;
-  subtext?: string;
-  gradient?: string;
-}) => (
-  <div className={`relative overflow-hidden bg-white rounded-xl p-5 hover:shadow-lg 
-                   transition-all duration-300 group ${gradient}`}>
-    <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 
-                    transition-opacity duration-300 from-violet-500 to-fuchsia-500" />
-    <div className="relative">
-      <div className="flex items-center space-x-2 text-sm text-gray-500 mb-2">
-        <div className="p-2 rounded-lg bg-violet-50 text-violet-500">
-          <Icon className="w-4 h-4" />
-        </div>
-        <span className="font-medium">{label}</span>
-      </div>
-      <p className="text-2xl font-bold text-gray-800 mb-1">{value}</p>
-      {subtext && (
-        <p className="text-sm text-gray-500">{subtext}</p>
-      )}
-    </div>
-  </div>
-);
+
 
 export const Stats = () => {
   const stats = useAppSelector(state => state.stats);
@@ -102,7 +79,7 @@ export const Stats = () => {
 
         {/* Main Stats Grid */}
         <div className="grid grid-cols-2 gap-4">
-          <StatsCard 
+          <StatsCard
             icon={Target} 
             label="Today's Focus" 
             value={stats.dailyPomodoros}

@@ -71,8 +71,8 @@ const ModeButton: React.FC<{
         
         // Responsive padding and width
         "w-full sm:w-auto",
-        "px-3 sm:px-6 py-3",
-        "rounded-xl sm:rounded-full",
+        "p-6",
+        "rounded-xl",
         
         // Hover and active states
         "transform hover:-translate-y-0.5",
