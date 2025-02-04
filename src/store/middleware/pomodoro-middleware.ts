@@ -31,7 +31,7 @@ const calculateMinutesWorked = (oldState: TimerState, newState: TimerState): num
 // Handle timer updates and completions
 startAppListening({
   actionCreator: updateTimer,
-  effect: async (action, listenerApi) => {
+  effect: async (_, listenerApi) => {
     const oldState = (listenerApi.getOriginalState() as RootState).timer;
     const newState = (listenerApi.getState() as RootState).timer;
     const settings = (listenerApi.getState() as RootState).settings;
@@ -88,14 +88,14 @@ startAppListening({
 
 // Reset daily stats and handle streak at midnight
 startAppListening({
-  predicate: (action, currentState, previousState) => {
+  predicate: (_, __, previousState) => {
     const now = new Date();
     const previousDate = new Date((previousState as RootState).stats.lastUpdate || Date.now());
     return now.getDate() !== previousDate.getDate() || 
            now.getMonth() !== previousDate.getMonth() ||
            now.getFullYear() !== previousDate.getFullYear();
   },
-  effect: async (action, listenerApi) => {
+  effect: async (_, listenerApi) => {
     const state = listenerApi.getState() as RootState;
     const { dailyPomodoros, currentStreak } = state.stats;
     
@@ -115,7 +115,7 @@ startAppListening({
 // Sync timer with settings updates
 startAppListening({
   actionCreator: updateSettings,
-  effect: async (action, listenerApi) => {
+  effect: async (_, listenerApi) => {
     const state = listenerApi.getState() as RootState;
     const { mode, isActive } = state.timer;
     
@@ -130,7 +130,7 @@ startAppListening({
 // Handle streak updates when stats change
 startAppListening({
   actionCreator: updateStats,
-  effect: async (action, listenerApi) => {
+  effect: async (_, listenerApi) => {
     const state = listenerApi.getState() as RootState;
     const { dailyPomodoros, currentStreak, lastUpdate } = state.stats;
     

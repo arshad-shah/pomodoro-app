@@ -49,7 +49,7 @@ startAppListening({
 // Update current task on timer completion
 startAppListening({
   actionCreator: updateTimer,
-  effect: async (action, listenerApi) => {
+  effect: async (_, listenerApi) => {
     const oldState = listenerApi.getOriginalState() as RootState;
     const newState = listenerApi.getState() as RootState;
     
